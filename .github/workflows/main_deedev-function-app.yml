@@ -12,23 +12,19 @@ on:
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
   DOTNET_VERSION: '6.0.x' # set this to the dotnet version to use
+  DOTNET_VERSION_3_1: '3.1' # set this to the dotnet version to use
 
 jobs:
   build-and-deploy:
     runs-on: windows-latest
     steps:
-      - task: UseDotNet@2
-        displayName: Use Dot Net Core 3.1.x
-        inputs:
-          packageType: 'sdk'
-          version: '3.1.x'
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@v2
 
-      - name: Setup DotNet ${{ env.DOTNET_VERSION }} Environment
+      - name: Setup DotNet ${{ env.DOTNET_VERSION_3_1 }} Environment
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: ${{ env.DOTNET_VERSION }}
+          dotnet-version: ${{ env.DOTNET_VERSION_3_1 }}
 
       - name: 'Resolve Project Dependencies Using Dotnet'
         shell: pwsh
